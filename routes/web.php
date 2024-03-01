@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,30 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('posts', [
-        'posts' => Post::all()
-        ]);
-});
 
-Route::get('posts/{post}', function($slug){
+Route::get('/',  [HomeController::class, 'connect'])->name('home');
 
-    return view('post', [
-        'post' => Post::find($slug)
-    ]);
-//    $path = __DIR__ . "/../resources/posts/{$slug}.html";
-//
-//    if(! file_exists($path)) {
-//        return redirect('/');
-//    }
-//
-//
-//    $post = file_get_contents($path);
-//
-//
-//    return view('post', [
-//
-//        'post' => $post
-//    ]);
-});
+//Route::get('/', 'HomeController@index');
 
